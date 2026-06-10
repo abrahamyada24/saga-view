@@ -1,0 +1,21 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "remote-access",
+  "description": "enables remote IPC access for the local nitro sidecar",
+  "windows": [
+    "main"
+  ],
+  "remote": {
+    "urls": [
+      "http://127.0.0.1:5174",
+      "http://127.0.0.1:5174/*"
+    ]
+  },
+  "permissions": [
+    "core:default",
+    "core:window:default",
+    "core:window:allow-set-fullscreen",
+    "core:window:allow-is-fullscreen",
+    "allow-toggle-fullscreen"
+  ]
+}
