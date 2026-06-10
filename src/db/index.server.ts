@@ -5,12 +5,14 @@ import * as schema from "./schema.server";
 
 const DB_URL = process.env.DB_PATH || "file:./data/studio.db";
 
-// Ensure data directory exists
-const filePath = DB_URL.replace(/^file:/, "");
-try {
-  mkdirSync(dirname(filePath), { recursive: true });
-} catch {
-  // directory may already exist
+// Ensure data directory exists only for local sqlite files
+if (DB_URL.startsWith("file:")) {
+  const filePath = DB_URL.replace(/^file:/, "");
+  try {
+    mkdirSync(dirname(filePath), { recursive: true });
+  } catch {
+    // directory may already exist
+  }
 }
 
 export const db = drizzle({
